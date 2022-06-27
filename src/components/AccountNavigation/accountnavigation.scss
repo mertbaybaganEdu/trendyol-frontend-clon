@@ -1,0 +1,125 @@
+.account-navigation-container {
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 300px;
+
+  .account-navigation-item {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .btn-icon {
+      margin-right: 3px;
+    }
+  }
+
+  .account {
+    position: relative;
+
+    &:hover {
+      .user-loggedin-container {
+        visibility: visible;
+      }
+    }
+    .user-loggedin-container {
+      width: auto;
+      background: #fff;
+      border: 1px solid var(--gray);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 15px;
+      box-shadow: 0 3px 10px 0 #00000012;
+      top: 25px;
+      right: 5px;
+      position: absolute;
+      visibility: hidden;
+      color: #1b1b1b;
+      z-index: 8;
+
+      .little-box {
+        content: "";
+        width: 15px;
+        height: 15px;
+        border-top: 1px solid var(--gray);
+        border-right: 1px solid var(--gray);
+        position: absolute;
+        top: -8px;
+        right: 25px;
+        background: #fff;
+        transform: rotate(-45deg);
+      }
+      .login-register-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        .login-register-item {
+          .btn-link {
+            border-radius: 5px;
+          }
+          :last-child {
+            border: 1px solid #dedede;
+          }
+        }
+      }
+
+      h2 {
+        margin-bottom: 10px;
+      }
+      ul {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        .loggedin-account-item {
+          height: 20px;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          width: auto;
+          margin-top: 10px;
+          .btn-account {
+            gap: 5px;
+            width: auto;
+            height: 25px;
+            .btn-icon {
+              color: var(--dark-gray);
+            }
+          }
+          &:hover {
+            svg {
+              color: var(--bg-trendyol);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .basket {
+    gap: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .basket-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f27a1a;
+      color: #fff;
+      font-size: 11px;
+      width: 20px;
+      height: 16px;
+      line-height: 16px;
+      text-align: center;
+      margin-left: 3px;
+      margin-top: 2px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+  }
+}
