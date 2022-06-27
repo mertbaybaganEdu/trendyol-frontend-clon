@@ -1,53 +1,66 @@
 /* eslint-disable */
-import {Link, useParams} from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import LazyLoad from "react-lazyload";
 import Text from "../Text/Text";
 import cn from "classnames";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { useSite } from "../../context/Sitecontext";
-import {useEffect} from "react";
-
+import { useEffect } from "react";
 
 const Campaigns = ({ mode, newCampaning }) => {
-    const { id , categoriesUrl} = useParams();
-    const params = useParams()
-  const {campaigns ,setCampaigns ,categories  ,setCategories ,setCategoryId ,categoryId } = useSite();
+  const { id, categoriesUrl } = useParams();
+  const params = useParams();
+  const {
+    campaigns,
+    setCampaigns,
+    categories,
+    setCategories,
+    setCategoryId,
+    categoryId,
+  } = useSite();
   useEffect(() => {
-        fetch("http://localhost:5000/campaings")
-            .then((response) => response.json())
-            .then((response) => setCampaigns(response))
-            .catch((error) => console.log(error));
-      }, []);
+    fetch("/campaings")
+      .then((response) => response.json())
+      .then((response) => setCampaigns(response))
+      .catch((error) => console.log(error));
+  }, []);
   useEffect(() => {
-    fetch("http://localhost:5000/categories")
-        .then((response) => response.json())
-        .then((response) => setCategories(response))
-        .catch((error) => console.log(error));
-  } , []);
-  setTimeout(() => {
-       const id =  categories.find(category => category.categoriesSlugify === params.categoriesUrl)._id;
-       setCategoryId(id);
-  } , 100);
+    fetch("/categories")
+      .then((response) => response.json())
+      .then((response) => setCategories(response))
+      .then(() => {
+        const id = categories.find(
+          (category) => category.categoriesSlugify === params.categoriesUrl
+        )._id;
+        setCategoryId(id);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
- console.log(categories);
+  console.log(categories);
 
-    const style = {
+  const style = {
     mode: {
       campaignbig: "campaign-big",
       campaignsmall: "campaign-small",
     },
   };
 
-
- console.log(categoryId);
- console.log(categoriesUrl);
- console.log(id)
+  console.log(categoryId);
+  console.log(categoriesUrl);
+  console.log(id);
 
   return (
     <>
       {campaigns
-          .filter( categoriesUrl ?(data) =>   data.newCampaning === newCampaning  && categoriesUrl  ? data.category === categoryId : null
-          : data => data.newCampaning === newCampaning )
+        .filter(
+          categoriesUrl
+            ? (data) =>
+                data.newCampaning === newCampaning && categoriesUrl
+                  ? data.category === categoryId
+                  : null
+            : (data) => data.newCampaning === newCampaning
+        )
         .map((campaign) => {
           const listId = `list-${campaign.id}`;
           return (
@@ -56,11 +69,11 @@ const Campaigns = ({ mode, newCampaning }) => {
               className={cn("component-item", style.mode[mode])}
               onMouseOver={() => {
                 const hoverText = document.getElementById(listId);
-                  hoverText.classList.add("open-text");
+                hoverText.classList.add("open-text");
               }}
               onMouseOut={() => {
                 const hoverText = document.getElementById(listId);
-                  hoverText.classList.remove("open-text");
+                hoverText.classList.remove("open-text");
               }}
             >
               <Link className="campaign-link " to={campaign.link}>
