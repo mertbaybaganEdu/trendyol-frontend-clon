@@ -5,11 +5,7 @@
   "proxy": "https://mertbaybagan.herokuapp.com/",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
